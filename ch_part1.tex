@@ -1,2 +1,10 @@
-\chapter{Companding - Redundancy Based on the Statistical Properties of the Source}
+\chapter{Companding - Redundancy Reduction}
 \label{ch:part1}
+
+\section{Companding}
+
+I dette afsnit vil vi gennemgå begrebet `companding`, som en er sammentrækning af `compresseion`og `expansion`. 
+
+Companding er i korte træk en metode til begrænse redundans i talesignaler. Dette gøres ved at transformere talens normale Laplacian distribuerede pdf, om til en mere rektangulær pdf, for derefter kunne kode signalet med en konstant-længde kode. Hos modtageren gendannes signalet til dets oprindelige form. Generelt vinder man 4 bits/sample ved companding, og kan altså ved 8 bit/sample, få et signal der har samme kvalitet som et signal med 12 bit/sample. 
+
+Signalers kvalitet kan objektiv set beskrives ved hjælp af `Signal to Quantization Noise Ratio`, som er altså er et forhold mellem signalets samlede størrelse, og størelsen af den quantiserede signal. 
