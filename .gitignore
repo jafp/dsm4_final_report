@@ -1,0 +1,9 @@
+
+report.pdf
+*.log
+*.idx
+*.out
+*.nlo
+*.aux
+*.toc
+*.synctex.gz
