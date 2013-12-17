@@ -1,0 +1,7 @@
+\select@language {english}
+\contentsline {chapter}{Contents}{i}{section*.1}
+\contentsline {chapter}{List of Figures}{iii}{section*.2}
+\contentsline {chapter}{\chapternumberline {1}Companding - Redundancy Based on the Statistical Properties of the Source}{1}{chapter.1}
+\contentsline {chapter}{\chapternumberline {2}Signal with Memory - Random Processes}{3}{chapter.2}
+\contentsline {chapter}{\chapternumberline {3}Prediction Filters}{5}{chapter.3}
+\contentsline {chapter}{\chapternumberline {4}Pitch Excited Coding (LPC) and Vocal Tract Models}{7}{chapter.4}

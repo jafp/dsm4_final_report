@@ -1,0 +1,43 @@
+% Master Thesis DTU Template
+% Remus M. Prunescu remusmp@gmail.com Feb, 2011
+
+\documentclass[a4paper,11pt]{memoir}
+
+% Include all settings
+\input{setup}
+
+\begin{document}
+
+\input{titlePage}
+
+\frontmatter
+\tableofcontents
+\cleardoublepage
+\listoffigures
+\printnomenclature
+
+\mainmatter
+
+\input{ch_part1}
+\input{ch_part2}
+\input{ch_part3}
+\input{ch_part4}
+
+%\appendix
+%\appendixpage
+
+%\input{app_source}
+%\input{app_sch}
+%\input{app_brd}
+%\input{app_simu}
+
+\backmatter
+
+\bibliography{references}
+\bibliographystyle{plainnat}
+
+% For biblatex
+%\printbibliography
+%\printindex
+
+\end{document}
