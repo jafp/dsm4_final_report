@@ -1,6 +1,7 @@
 
 report.pdf
 *.log
+*.lof
 *.idx
 *.out
 *.nlo
