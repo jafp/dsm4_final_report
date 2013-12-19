@@ -1,5 +1,5 @@
 
-% Part 3 - C
+% Del 3 - spørgsmål C + D
 
 clear all
 close all
@@ -34,6 +34,7 @@ H2=freqz(a,1,1000);
 plot(w,20*log10(abs(H1)),'b')
 hold on
 plot(w,20*log10(abs(H2)),'r'), grid
+plot(w,20*log10(abs(H1)) + 20*log10(abs(H2)), 'g')
 
 % Prediction gain
 error = filter(a,1,yy);
@@ -52,7 +53,8 @@ for p=1:Maxorder
     a=lpc(yy,p);
     a=real(a);
     error=filter(a,1,yy);
-    PG(p)=10*log10(sigpow/var(error(p:N)));% not including he transient of the FIR filter of order p
+    PG(p)=10*log10(sigpow/var(error(p:N)));
 end
 figure('position', [0 0 500 180])
-stem(1:Maxorder,PG),xlabel('Order of prediction'),ylabel('PG (dB)'),title('Prediction Gain in dB'),grid
+stem(1:Maxorder,PG),xlabel('Order of prediction'),ylabel('PG (dB)');
+title('Prediction Gain in dB'),grid

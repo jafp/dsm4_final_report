@@ -37,12 +37,16 @@ yc_qe = compand(yc_q, 255, 1, 'mu/expander');
 % pdf of expanded signal (mu-law expanding)
 figure('position', [0 0 600 200])
 hist(yc_qe);
-title('Expanded signal (fra det companded signal)');
+title('Expanded signal (fra companded signal)');
 
 %sound(yy, Fs);
 %pause(length(yy) / Fs);
-sound(yc_qe, Fs);
+%sound(yc_qe, Fs);
 
 %SQNR = 10*log10(var(yy)/var(yy-yq))
 SQNR_companded = 10*log10(var(yc)/var(yc-yc_q))
+
+ent_yy = entropy(yy)
+ent_yc = entropy(yc)
+ent_yc_q = entropy(yc_qe)
 

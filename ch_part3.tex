@@ -7,14 +7,20 @@ I dette kapitel vil vi vise at man kan fremstille filtre, der kan reducere memor
 
 LPC anvender en række af de foregående samples, til at lineært forudsige (eng.: predict) den næste sample. En god forudsigelse giver en lille difference mellem den originale sample, og den forudsagte sample. Denne fejl eller difference har en mindre dynamisk range, og kan derfor quantiseres med færre bits end det originale signal. Dette giver en væsentlig kompression af det transmitterede signal, da kun fejlen mellem samples skal transmitteres.
 
-Det forudsagte signal $\tilde{x}[n]$ ud fra det orignale signal $x[n]$, har fejlen $\epsilon[n]$. Ligning \ref{eq:part3_1} beskriver sammenhængen mellem det originale signal, det predictede signale og fejlen.
+Det forudsagte signal $\tilde{x}[n]$ ud fra det orignale signal $x[n]$, har fejlen $\epsilon[n]$. Ligning \ref{eq:part3_1} og figur \ref{fig:part3_x1} beskriver sammenhængen mellem det originale signal, det predictede signale og fejlen.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]{resources/part3_block}
+ 	\caption{Blok-diagram}
+ 	\label{fig:part3_x1}
+\end{figure}
 
 \begin{equation}\label{eq:part3_1}
 	\tilde{x}[n] = \sum^P_{i=1} a_i x[n-i] = h[h] * x[n] \Rightarrow \epsilon[n] = x[n] - \tilde{x}[n] = \sum^P_{i=0} x[n-1], a_0 = 1
 \end{equation}
 
 \subsection{Simpelt 2-tap prediction filter}
-
 For at lave et 2-tap prediction skal vi kende en række ting:
 
 \begin{itemize}
@@ -84,7 +90,7 @@ r = -[rr(101); rr(102)];
 my_a = inv(R) * r
 lpc_a = lpc(yy, 2)
 
-error = filter(real(my_a),1,yy);
+error = filter(real([1, my_a]),1,yy);
 PG = 10*log10(var(yy)/var(error))
 	\end{lstlisting}
 \end{figure}
@@ -151,12 +157,12 @@ Ved af filtrere white noise-signalet med lavpas-filteret, tilføjer vi memory ti
  	\label{fig:part3_4}
 \end{figure}
 
-For at fjerne det memory som er blevet tilføjet, kommer LPC filteret ind i billedet. Dette kaldes også for et whitening filter, da det giver signalets dets white noise karakteristik tilbage. Da LP-filteret er et 12. ordens filter, har vi også lavet et 12. ordens LPC-filter. Koefficienter findes ved hjælp af MATLAB's `lpc`, hvorefter error signalet udregnes ved hjælp af MATLAB's `filter`. Det resulterende signal's auto-correlation er plottet på figur \ref{fig:part3_6}. Her kan det ses at stort set alt memory er forsvundet - LPC-filteret har altså virket efter hensigten, og fjernet memory fra signalet. Frekvensresponsen for LPC-filteret kan ses på figur \ref{fig:part3_5}.
+For at fjerne det memory som er blevet tilføjet, kommer LPC filteret ind i billedet. Dette kaldes også for et whitening filter, da det giver signalets dets white noise karakteristik tilbage. Da LP-filteret er et 12. ordens filter, har vi også lavet et 12. ordens LPC-filter. Koefficienter findes ved hjælp af MATLAB's `lpc`, hvorefter error signalet udregnes ved hjælp af MATLAB's `filter`. Det resulterende signal's auto-correlation er plottet på figur \ref{fig:part3_6}. Her kan det ses at stort set alt memory er forsvundet - LPC-filteret har altså virket efter hensigten, og fjernet memory fra signalet. Frekvensresponsen for LPC-filteret kan ses på figur \ref{fig:part3_5}. Den grønne linje på figur \ref{fig:part3_5} viser den summerede frekvensrespons for de to filtre. Hvis begge systemer of filtre var ideelle, skulle LPC-filteret gerne udhviske LP-filterets virkning, og gen grønne linje burde ligge på præcis 0 dB (forstærkning på 1). 
 
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.8\textwidth]{resources/part3_lp_and_whitening_filter}
- 	\caption{Frekvensresponse for LP (blå) og whitening filter (rød)}
+ 	\caption{Frekvensresponse for LP (blå), whitening filter (rød) og summen af de to filtre (grøn)}
  	\label{fig:part3_5}
 \end{figure}
 
