@@ -87,7 +87,7 @@ for R = 1:N
     yy = yy + xcorr(zz); 
 end    
 
-%yy = yy / N;
+yy = yy / N;
 
    
 figure('position',[0 0 600 600])
