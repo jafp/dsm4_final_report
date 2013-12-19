@@ -22,16 +22,6 @@
   Timestamp                = {2013.12.19}
 }
 
-@Article{amh_quant,
-  Title                    = {Quantization},
-  Author                   = {AMH},
-  Journal                  = {IHK},
-  Year                     = {2008},
-
-  Owner                    = {jafp},
-  Timestamp                = {2013.12.19}
-}
-
 @Book{ingle2011,
   Title                    = {Digital Signal Processing Using MATLAB},
   Author                   = {Vinay K. Ingle and John G. Proakis},
