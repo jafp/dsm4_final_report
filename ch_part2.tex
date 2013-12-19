@@ -4,7 +4,7 @@
 \section{a. Autokorrelation}
 I denne opgave skal vi se på forskellige tilfældigt gereret signaler og deres relation til hukommelse. Vi skal også stifte bekendskab med Markov modellen som vi vil gøre brug af i denne aflevering.\\
 \subsection{Markov modellen}
-Markov modellen er en måde, at lave en stokatsisk proces hvor tilstanden udelukkende bestemmes af den tidligere tilstand. Man kunne overføre methoden til den fysiske verden ved at udtrykke det som, jo højer sansynligheden er for at tilstanden skifter, jo højer er frekvensen fra modellen. Markov modellen har stor relation med hukommelse i en proces. Hvis sandsynligheden er 50$\%$ for at tilstanden skifter er det dermed et udtryk for at der ingen hukommelse er i processen da der lige stor sandsynlighed for et tilstands skifte, hvis sansynligheden er tættere på 1 eller 0 vil hukommelsen være større i processen. \\
+Markov modellen er en måde, at lave en stokatsisk proces hvor tilstanden udelukkende bestemmes af den tidligere tilstand. Man kunne overføre methoden til den fysiske verden ved at udtrykke det som, jo højer sansynligheden er for at tilstanden skifter, jo højer er frekvensen fra modellen. Markov modellen har stor relation med hukommelse i en proces. Hvis sandsynligheden er 50$\%$ for at tilstanden skifter er det dermed et udtryk for at der ingen hukommelse er i processen da der lige stor sandsynlighed for et tilstands skifte, hvis sansynligheden er tættere på 1 eller 0 vil hukommelsen være større i processen. 
 
  På figure \ref{fig:part2_1} er en Markov tilstands matrix hvori sansynligheden for tilstands skift er beskrevet:  
 
@@ -24,7 +24,22 @@ På figure \ref{fig:part2_2} er et Markov diagram som visuelt beskriver Markov m
  
 
 \subsection{Autokorrelation}
-Autokorrelation af en tilfældig proces beskriver værdierne i den tilfældige proces til forskellige tidspunkter. Denne methode kan benyttes til at finde hukommelse i en proces. Vi vil se på hvordan autokorrelationen ser ud på en enkelt tilfældig proces og tilsvarende hvordan den arter sig ved gennemsnittet af mange gentaelser af processer.
+Autokorrelation af en tilfældig proces beskriver værdierne i den tilfældige proces til forskellige tidspunkter. Denne methode kan benyttes til at finde hukommelse i en proces. 
+Det er ofte relevant at undersøge en tidsserie for vedvarenhed, dvs. om værdierne i en tidsserie er afhængige af de foregående værdier. Til dette formål benyttes autokorrelationsfunktionen.
+Autokorrelationsfunktionen kan beskrives som:\\
+Hvis
+\begin{equation}
+ y[n] = x[n]
+\end{equation}
+Så er autokorrelationsfunktionen: 
+\begin{equation}
+r_{xx}=\sum_{n = - \infty}^{\infty}x[n+k]x[n]=\sum^{\infty}_{n = -\infty}x[n]x[n\cdot k] 
+\end{equation}
+
+Vi vil se på hvordan autokorrelationen ser ud på en enkelt tilfældig proces og tilsvarende hvordan den arter sig ved 
+gennemsnittet af mange gentagelser af samme proces.
+Autokorrelationsfunktionen for en realisering af processen er en stokastisk signal i sig selv - mens autokorrelation af processen er et helt deterministisk signal.\\
+
 
 Vi vil lave forsøget 3 slags signaler  
 
@@ -35,7 +50,7 @@ Vi vil lave forsøget 3 slags signaler
 	\item 1. ordens Markov model med to tilstande med hukommelse. figur \ref{fig:part2_6} 
 \end{enumerate}
 
-På begge figure, er den øverste illustration af selve rand/randn processen. Den midster illustration er af en enkelt realisering af det autokorrelateret signal og den nederste illustration auto korrelateringen  af 100 realisering.  
+På begge figure på \ref{fig:part2_ran} og \ref{fig:part2_markov}, er den øverste illustration af relaiseringen af processen. Den midster illustration er af en enkelt realisering af det autokorrelateret signal og den nederste er autokorrelateringen  af gennemsnittet af 100 realisering.  
  \begin{figure}[!h]
 	\centering
 	\subfloat[ Ensartet fordelt pseudotilfældige numre]{%
@@ -59,7 +74,8 @@ På begge figure, er den øverste illustration af selve rand/randn processen. De
 	\caption{Markov model med og uden hukommelse }
 	\label{fig:part2_markov}
 \end{figure}
-Således kan vi fastslå at hukommelsen i en proces kan analyseres ved hjælp af autokorrlation.
+Hvis vi ser på de nederste tre plots hvor er ikke forfindes hukommelse, kan vi se at autokorrlationen er en deltafunktion. Dette indikerer af der ikke er hukommelse i processen. Det sidste plot hvor der er hukommelse figur\ref{fig:part2_6} er der ikke tale om en delta funktion og det kan på denne måde identificeres af der er hukommelse i processen. 
+
 
 \section{b. Entropi }
 Entropi er et mål i bit, som beskriver forudsiglighed af informationsindhold i en proces.
@@ -106,9 +122,9 @@ P(0)+P(1)=1
 
 Vi laver en proces med hukommelse og finder entropien for denne tilfældige proces:\\ vi opstiller en Markov overførings matrix for procesen:
 
-\[ \left( \begin{array}{ccc}
+\[ \left[ \begin{array}{ccc}
 P(0|0) = 0.92 & p(1|0) = 0.08   \\
-P(0|1) = 0.12  & P(1|1) = 0.88  \end{array} \right)\] 
+P(0|1) = 0.12  & P(1|1) = 0.88  \end{array} \right]\] 
 
 Vi udregner $P(X|0)$ og $P(X|1)$:
 
@@ -143,7 +159,21 @@ H(x)_{hukommelse}<H(x)_{ingen hukommelse}
 
 Wiener-Khinchin Teorem hedder, at energi tæthedsspektrumet af en tilfældig proces er fouier transformationen af autokorrlationens funktionen. Det vil med andre ord betyde at vi kan lave et energy spektrugram ved at lave en fouier transformation på den autokorrlaieret proces.
  
-Autokorrelationsfunktionen for en realisering af processen er en stokastisk signal i sig selv - mens autokorrelation af processen er et helt deterministisk signal.\\
+Vi kan illustrer det således:\\
+
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=6em,column sep=7em,minimum width=4em] {
+     x[n] & X(e^{j\omega}) \\
+     r_{xx}[k] & R_{xx}(e^{j\omega}) = |X(e^{j\omega})|^2 \\};
+  \path[-stealth]
+    (m-1-1) edge node [left] {Autokorrlation} 
+    (m-2-1) edge node [above] {DTFT} (m-1-2)
+    (m-2-1) edge node [below] {DTFT} node [above] {} (m-2-2)
+    (m-1-2) edge node [right] {$|\cdot|^2$} (m-2-2);
+            %edge [dashed,-] (m-2-1);
+\end{tikzpicture}
+
+
 Hvis vi først ser på en realeation af en tilfældig proces (1. orden markov med 2 tilstande) med og uden hukommelse:
 
 De øverste plots er af selve den tilfældige proces hvor der tydeligt ses, at den ene højre er med hukommelse hvor imod den venstre er uden. De nedstre to plots viser sprktraet af de samme tilfældige proces hvor fft en er fundet med gentaget 1024 gange og derefter summeret og gennemsnittet fundet.
