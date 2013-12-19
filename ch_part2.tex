@@ -143,9 +143,21 @@ H(x)_{hukommelse}<H(x)_{ingen hukommelse}
 
 Wiener-Khinchin Teorem hedder, at energi tæthedsspektrumet af en tilfældig proces er fouier transformationen af autokorrlationens funktionen. Det vil med andre ord betyde at vi kan lave et energy spektrugram ved at lave en fouier transformation på den autokorrlaieret proces.
  
-Autokorrelationsfunktionen for en realisering af processen er en stokastisk signal i sig selv - mens autokorrelation af processen er et helt deterministisk signal.
+Autokorrelationsfunktionen for en realisering af processen er en stokastisk signal i sig selv - mens autokorrelation af processen er et helt deterministisk signal.\\
+Hvis vi først ser på en realeation af en tilfældig proces (1. orden markov med 2 tilstande) med og uden hukommelse:
 
+De øverste plots er af selve den tilfældige proces hvor der tydeligt ses, at den ene højre er med hukommelse hvor imod den venstre er uden. De nedstre to plots viser sprktraet af de samme tilfældige proces hvor fft en er fundet med gentaget 1024 gange og derefter summeret og gennemsnittet fundet.
 
-
-
+ På plot (b) hvor der ikke forfindes hukommelse ses det på spektrumet a der er Gaussian hvid støj som er alle frekvenser. Der imod på spektrummet med hukommelse (b) ser vi en lav pass filter ligende karakteristik.  
+ \begin{figure}[!h]
+	\centering
+	\subfloat[med hukommelse]{%
+		\includegraphics[width=0.55\textwidth]{resources/part2_spec_med.png}
+		\label{fig:part2_8}}
+	\subfloat[uden hukommelse]{%
+		\includegraphics[width=0.55\textwidth]{resources/part2_spec_uden.png}
+		\label{fig:part2_9}}
+	\caption{Realisation af en tilfældig processer med og uden hukommels og spektrum af samme tilfældig processer  }
+	\label{fig:part2_markov}
+\end{figure}
 

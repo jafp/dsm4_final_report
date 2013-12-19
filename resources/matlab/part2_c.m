@@ -54,12 +54,12 @@ subplot(2,1,2)
 plot(n(1:500), mean4(1:500))
 grid on;
 subplot(2,1,1)
-stem(x1(1:1000))
+stem(x2(1:1000))
 grid on;
 
 figure('position',[0 0 600 600])
 subplot(2,1,1)
-stem(x2(1:1000))
+stem(x1(1:1000))
 grid on;
 subplot(2,1,2)
 plot(n(1:500), mean3(1:500))
